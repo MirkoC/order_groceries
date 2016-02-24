@@ -1,0 +1,16 @@
+<% display_name = current_user.full_name %>
+<% display_name = current_user.username if current_user.full_name == '' %>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-user"> <%= display_name  %> </i><span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <%=link_to ' My data ', user_path(current_user), class: 'fa fa-paperclip' %>
+    </li>
+    <li role="separator" class="divider"></li>
+    <li>
+      <%=link_to ' Log out ', user_session_path(current_user_session), 'data-method' => :delete, class: 'fa fa-sign-out' %>
+    </li>
+  </ul>
+</li>

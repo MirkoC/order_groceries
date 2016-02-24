@@ -1,0 +1,7 @@
+I"‰(function() {
+  jQuery(function() {
+    return $('#flash').hide().delay(800).fadeIn(800).delay(4000).fadeOut(800);
+  });
+
+}).call(this);
+:ET

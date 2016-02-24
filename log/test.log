@@ -1,0 +1,288 @@
+  [1m[36m (391.7ms)[0m  [1mDROP DATABASE IF EXISTS "pbs_test"[0m
+  [1m[35m (1688.9ms)[0m  CREATE DATABASE "pbs_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.2ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (94.2ms)[0m  CREATE TABLE "users" ("id" serial primary key, "username" character varying NOT NULL, "email" character varying NOT NULL, "full_name" character varying, "crypted_password" character varying NOT NULL, "password_salt" character varying NOT NULL, "persistence_token" character varying NOT NULL, "single_access_token" character varying NOT NULL, "perishable_token" character varying NOT NULL, "login_count" integer DEFAULT 0 NOT NULL, "failed_login_count" integer DEFAULT 0 NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "current_login_ip" character varying, "last_login_ip" character varying, "verified" boolean DEFAULT 'f') 
+  [1m[36m (44.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (54.0ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (43.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160110164455')
+  [1m[36m (11.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160109141932')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = '23a1fcb5cf6e7cc1ab838fbbc0cd508574aa6713c09cf951ade8d8966458ecb733f050ed8e5ad18293455e6feff9a0eb2234d126a4e5b9b2240a64220bc3bd1a' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'PUpdY5igBBJdVSbX23Sw' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = '67d13db5a53213c11fec6e399c1657f87d8e861e7e1cb4a522c451c06f059b35d4b947253758f031b42b25cb9a6d3572728df896d62cb046c38c6830377ccea0' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'MYb25MdCfQ7p1YzXJdSx' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "tcsCxhJwvamEMDxATIan"], ["crypted_password", "400$8$47$cbf92debc64b38e1$438c496b42bf638775a8a7447743409b081617bc6739444e5bf4b7785c83cb6b"], ["persistence_token", "67d13db5a53213c11fec6e399c1657f87d8e861e7e1cb4a522c451c06f059b35d4b947253758f031b42b25cb9a6d3572728df896d62cb046c38c6830377ccea0"], ["single_access_token", "MYb25MdCfQ7p1YzXJdSx"], ["perishable_token", "tk0pNkPP0O3TSY3DTi85"], ["created_at", "2016-01-16 17:01:59.640423"], ["updated_at", "2016-01-16 17:01:59.640423"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = 'd51f438f9a40ca007915df159677e9b20b3448849c6dc3339b64c7fa58d1e709039ddce4292328d0d577f9b6c7d612ab1016be9c1cee73636e352066d92c25f3' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'ZF7q7oClbRyRTH1V4n' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "IvNXXwkRnR8FPg9tDmz"], ["crypted_password", "400$8$38$98aaf14a2a15e8dc$deb5f261f3c4faa00200b656d47a71842240ac23809032b7f86827b7df764716"], ["persistence_token", "d51f438f9a40ca007915df159677e9b20b3448849c6dc3339b64c7fa58d1e709039ddce4292328d0d577f9b6c7d612ab1016be9c1cee73636e352066d92c25f3"], ["single_access_token", "ZF7q7oClbRyRTH1V4n"], ["perishable_token", "Fp3DF10SFsBP7DjmMXD"], ["created_at", "2016-01-16 17:06:20.498448"], ["updated_at", "2016-01-16 17:06:20.498448"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = 'b57e7e3605426499900f16c69c673d59ec615ca599196aceae2f20cfd1bb59c82c29d06fd4b49257a206c13ffe0b24a1bd9d1d54c21dc603faf77aa614f854fe' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = '2zLLZ0liUuNVKzhDTZEZ' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "vAI0eajyykHVcGhZt78r"], ["crypted_password", "400$8$48$c4139ca7f9da5c96$d3b194f8a4a142bda24e4c12049a331a05fd607c0f3b9de8d1f154bfae672550"], ["persistence_token", "b57e7e3605426499900f16c69c673d59ec615ca599196aceae2f20cfd1bb59c82c29d06fd4b49257a206c13ffe0b24a1bd9d1d54c21dc603faf77aa614f854fe"], ["single_access_token", "2zLLZ0liUuNVKzhDTZEZ"], ["perishable_token", "Z2aDmafX7qNa22L8VFhV"], ["created_at", "2016-01-16 17:09:57.269820"], ["updated_at", "2016-01-16 17:09:57.269820"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:09:57 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (41.4ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.8ms)
+Completed 200 OK in 1987ms (Views: 1966.6ms | ActiveRecord: 0.0ms)
+Started POST "/user_sessions" for 127.0.0.1 at 2016-01-16 18:09:59 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user_session"=>{"username"=>"test_user", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "test_user"]]
+  Rendered user_sessions/new.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.4ms)
+Completed 200 OK in 163ms (Views: 2.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = 'c623a546e0257861b01d444e72463ce9073eb2110072c08afe991928ace8c7794d3cb33dbc09bc5d9251b94f08b1dd64e22aaa2f038418edb69b8c77199c16b8' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'e8gzZf7cizTB1EfsmT67' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "mojXXQLVKWVbm0GJUv05"], ["crypted_password", "400$8$48$62cfb4260d56f0a9$d276013266dfb9673026370210533173f6bde1403a117dffaa904a503344af5d"], ["persistence_token", "c623a546e0257861b01d444e72463ce9073eb2110072c08afe991928ace8c7794d3cb33dbc09bc5d9251b94f08b1dd64e22aaa2f038418edb69b8c77199c16b8"], ["single_access_token", "e8gzZf7cizTB1EfsmT67"], ["perishable_token", "Cue7Dz9EvJRUtV907dHm"], ["created_at", "2016-01-16 17:15:27.568631"], ["updated_at", "2016-01-16 17:15:27.568631"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:15:27 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.8ms)
+Completed 200 OK in 164ms (Views: 157.3ms | ActiveRecord: 0.0ms)
+Started POST "/user_sessions" for 127.0.0.1 at 2016-01-16 18:15:27 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user_session"=>{"username"=>"test_user", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "test_user"]]
+  Rendered user_sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.4ms)
+Completed 200 OK in 145ms (Views: 2.7ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = 'ef2580cb3163f95b3e88e4bd55b95fac1e14f764d6e7f06fe64e23e0543b613007ef8c6efd4ee1def079e06d5ba89e6320310219f7eedb7e3d67a80f6f936dcf' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = '3Rbbv5GNOTAhZ8xtxKk' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "ZjUavLg4QLefeXRoOub"], ["crypted_password", "400$8$4a$6a47b70680835c31$80fcbbe57830083ff534f3bae028e848d538a1060621e3f16621ae574ee7bfb3"], ["persistence_token", "ef2580cb3163f95b3e88e4bd55b95fac1e14f764d6e7f06fe64e23e0543b613007ef8c6efd4ee1def079e06d5ba89e6320310219f7eedb7e3d67a80f6f936dcf"], ["single_access_token", "3Rbbv5GNOTAhZ8xtxKk"], ["perishable_token", "hSDgnwkSHtI9fuSPrU8"], ["created_at", "2016-01-16 17:16:04.625841"], ["updated_at", "2016-01-16 17:16:04.625841"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:16:04 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.5ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.7ms)
+Completed 200 OK in 164ms (Views: 157.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = 'e3c899713f15208c82048c266311c46b629d237ff7683c213d66bbe28b7673f5d50835807385069ec01ea309d1b2198b30df4bdcb8080d7e9625653badd5b141' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'FXvLzFqL3Ji636sPHg' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "epFKEnUIPF7Hw0i8mpG"], ["crypted_password", "400$8$47$90fda7e8b6d6de64$e7fa90534c43b416351eb24368820768615ac6450ce5622de026be850f48998b"], ["persistence_token", "e3c899713f15208c82048c266311c46b629d237ff7683c213d66bbe28b7673f5d50835807385069ec01ea309d1b2198b30df4bdcb8080d7e9625653badd5b141"], ["single_access_token", "FXvLzFqL3Ji636sPHg"], ["perishable_token", "i4Gyq4iDJnm6dr9JzL5"], ["created_at", "2016-01-16 17:16:16.410448"], ["updated_at", "2016-01-16 17:16:16.410448"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:16:16 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.5ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.8ms)
+Completed 200 OK in 163ms (Views: 156.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = '474657d43d0b72549b3e5e298cda2aaa122630fbba076a7ecd25235e96f1a45f20e88c63159cf4bc1460c92d9d299d10e4f3dac2265cf843031ba20d6d0430ac' LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = '21CptbA4SJwOgF5769tN' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "IkW16RegJ4zdiBKg7Q"], ["crypted_password", "400$8$48$e1fe88d3348846d6$ffa68d8f23e325a978594de36b7b136901f4b5e73a56a2548d0c29f0ba044d87"], ["persistence_token", "474657d43d0b72549b3e5e298cda2aaa122630fbba076a7ecd25235e96f1a45f20e88c63159cf4bc1460c92d9d299d10e4f3dac2265cf843031ba20d6d0430ac"], ["single_access_token", "21CptbA4SJwOgF5769tN"], ["perishable_token", "pykbswVkoFCButmpj5vt"], ["created_at", "2016-01-16 17:18:46.502406"], ["updated_at", "2016-01-16 17:18:46.502406"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:18:46 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.5ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.8ms)
+Completed 200 OK in 163ms (Views: 156.2ms | ActiveRecord: 0.0ms)
+Started POST "/user_sessions" for 127.0.0.1 at 2016-01-16 18:18:46 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user_session"=>{"username"=>"test_user", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "test_user"]]
+  Rendered user_sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.4ms)
+Completed 200 OK in 144ms (Views: 2.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = '353f0f7462284dfbfd3928663b2aeb2b80391e466135356fea1696211a1b4655576aa8582ac25991304dd669acdbf9d49c6844ae68139ed936fcddd8c120cfad' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'zQxX78YAOj0cjiEwnW7B' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "U1TZlAjnwxNikcAdgPx9"], ["crypted_password", "400$8$47$4b06f08203e82285$2ae6655def9ae4ccdb00f4a5fcdfdbbb846cd51d3c806413df4c6081e8eac1db"], ["persistence_token", "353f0f7462284dfbfd3928663b2aeb2b80391e466135356fea1696211a1b4655576aa8582ac25991304dd669acdbf9d49c6844ae68139ed936fcddd8c120cfad"], ["single_access_token", "zQxX78YAOj0cjiEwnW7B"], ["perishable_token", "EB6usnh23tVlGRWUZ732"], ["created_at", "2016-01-16 17:19:40.621525"], ["updated_at", "2016-01-16 17:19:40.621525"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:19:40 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.5ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.8ms)
+Completed 200 OK in 163ms (Views: 156.8ms | ActiveRecord: 0.0ms)
+Started POST "/user_sessions" for 127.0.0.1 at 2016-01-16 18:19:40 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user_session"=>{"username"=>"test_user", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "test_user"]]
+  Rendered user_sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.4ms)
+Completed 200 OK in 145ms (Views: 2.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = '698bc0b4d4cbadd587f3bc6b98e6cc94b4c17f06b5c0214d45be569ac21cc3c74ffe3c5ecc928046e93eaf9e0da8830e66a1172c730c57b487e3bd164c5e70da' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = '6PWJ2vyHRKrrlOY1RYHZ' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "bl84KeodylhUuvfpP6G"], ["crypted_password", "400$8$48$86104f65c5eaf6ba$2b1bb13e51297bebab56f7afea8cf2cbf5d87c8e0112874f259ecbca03a297e9"], ["persistence_token", "698bc0b4d4cbadd587f3bc6b98e6cc94b4c17f06b5c0214d45be569ac21cc3c74ffe3c5ecc928046e93eaf9e0da8830e66a1172c730c57b487e3bd164c5e70da"], ["single_access_token", "6PWJ2vyHRKrrlOY1RYHZ"], ["perishable_token", "FtkK6FrbA5urpBdAXKi"], ["created_at", "2016-01-16 17:19:54.583262"], ["updated_at", "2016-01-16 17:19:54.583262"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:19:54 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.8ms)
+Completed 200 OK in 163ms (Views: 156.8ms | ActiveRecord: 0.0ms)
+Started POST "/user_sessions" for 127.0.0.1 at 2016-01-16 18:19:54 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user_session"=>{"username"=>"test_user", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "test_user"]]
+  Rendered user_sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.4ms)
+Completed 200 OK in 146ms (Views: 2.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = 'd292aa9ff1b88d047620639b33d7879d044be1d1bdd4fa6aac3aa63007d8858126e9873f3e54c0aa20c36e34e74dd8194fa838f9eeb7d9bed5cc5873bcbb6048' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'JeePvgonWMrxQF2r9DJ' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "9I2UyRHCbe73TZ9K0GNF"], ["crypted_password", "400$8$47$15fea1ed8893e0a9$aa16b4c1ff288fdb76b898bdb63993b02981b89771739b0772fcc6ed1823da0b"], ["persistence_token", "d292aa9ff1b88d047620639b33d7879d044be1d1bdd4fa6aac3aa63007d8858126e9873f3e54c0aa20c36e34e74dd8194fa838f9eeb7d9bed5cc5873bcbb6048"], ["single_access_token", "JeePvgonWMrxQF2r9DJ"], ["perishable_token", "aXJiozLwKiMaeWIVbPTH"], ["created_at", "2016-01-16 17:20:09.361884"], ["updated_at", "2016-01-16 17:20:09.361884"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:20:09 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.7ms)
+Completed 200 OK in 163ms (Views: 156.2ms | ActiveRecord: 0.0ms)
+Started POST "/user_sessions" for 127.0.0.1 at 2016-01-16 18:20:09 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user_session"=>{"username"=>"test_user", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "test_user"]]
+  Rendered user_sessions/new.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.4ms)
+Completed 200 OK in 149ms (Views: 2.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = '7932b906e418750271ef5b59248bcceeaa84543f36462025c4faf2bab5ca7a88c544fb6c2a12fdc87ecfb48263ce83643594f9d538adb030b7779fc99c47c46e' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'muHgOzlw9ljuoUCb7cfU' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "bdEt5VWccaDrx8Wuk4Ag"], ["crypted_password", "400$8$38$2b7e1f8a36631727$4ced00cc0c52b1d123c600e6f9f69fefcf63161c451f36c2b665e55f8abbe9ea"], ["persistence_token", "7932b906e418750271ef5b59248bcceeaa84543f36462025c4faf2bab5ca7a88c544fb6c2a12fdc87ecfb48263ce83643594f9d538adb030b7779fc99c47c46e"], ["single_access_token", "muHgOzlw9ljuoUCb7cfU"], ["perishable_token", "ZjGniwHONeYXadjIG5qL"], ["created_at", "2016-01-16 17:20:33.513486"], ["updated_at", "2016-01-16 17:20:33.513486"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "verified" = $1, "perishable_token" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["verified", "t"], ["perishable_token", "xYuKvCDORjdQIO3KOzni"], ["updated_at", "2016-01-16 17:20:33.515719"], ["id", 11]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:20:33 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.8ms)
+Completed 200 OK in 163ms (Views: 156.5ms | ActiveRecord: 0.0ms)
+Started POST "/user_sessions" for 127.0.0.1 at 2016-01-16 18:20:33 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user_session"=>{"username"=>"test_user", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "test_user"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "login_count" = $1, "current_login_ip" = $2, "perishable_token" = $3, "updated_at" = $4 WHERE "users"."id" = $5  [["login_count", 1], ["current_login_ip", "127.0.0.1"], ["perishable_token", "j7oSWnrpBDFFhS1A4Y0"], ["updated_at", "2016-01-16 17:20:33.808790"], ["id", 11]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 114ms (ActiveRecord: 0.5ms)
+Started GET "/" for 127.0.0.1 at 2016-01-16 18:20:33 +0100
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_user_dropdown.html.erb (0.7ms)
+  Rendered layouts/_top_navigation_bar.html.erb (14.1ms)
+Completed 200 OK in 24ms (Views: 21.4ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@example.com') LIMIT 1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER('test_user') LIMIT 1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."persistence_token" = '57684a24a966c120fff2ea5fdc5e86a2f83d13b3d479bbadd7f9445654a46a6e5fcba448b3f18f462496abad9ed0274e1a7043626ce1a03c379fc97743639355' LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."single_access_token" = 'wb9RzB69BgYbDmhCi' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "full_name", "password_salt", "crypted_password", "persistence_token", "single_access_token", "perishable_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["username", "test_user"], ["email", "example@example.com"], ["full_name", "Test User"], ["password_salt", "gGLSNcNpmn1DokQF2Dd"], ["crypted_password", "400$8$47$80ddfdab3a4fe78c$12cdea0a2e91edc3b30b5a6dbc9b7d263cc7124776499d4e0c016cb8641fb319"], ["persistence_token", "57684a24a966c120fff2ea5fdc5e86a2f83d13b3d479bbadd7f9445654a46a6e5fcba448b3f18f462496abad9ed0274e1a7043626ce1a03c379fc97743639355"], ["single_access_token", "wb9RzB69BgYbDmhCi"], ["perishable_token", "gLygg0Jc7t22WKEBo"], ["created_at", "2016-01-16 17:21:09.885285"], ["updated_at", "2016-01-16 17:21:09.885285"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "verified" = $1, "perishable_token" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["verified", "t"], ["perishable_token", "lmPQM8M63mG5lTk8b2Z"], ["updated_at", "2016-01-16 17:21:09.887584"], ["id", 12]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+Started GET "/login" for 127.0.0.1 at 2016-01-16 18:21:09 +0100
+Processing by UserSessionsController#new as HTML
+  Rendered user_sessions/new.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_top_navigation_bar.html.erb (0.8ms)
+Completed 200 OK in 163ms (Views: 156.5ms | ActiveRecord: 0.0ms)
+Started POST "/user_sessions" for 127.0.0.1 at 2016-01-16 18:21:10 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user_session"=>{"username"=>"test_user", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "test_user"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "login_count" = $1, "current_login_ip" = $2, "perishable_token" = $3, "updated_at" = $4 WHERE "users"."id" = $5  [["login_count", 1], ["current_login_ip", "127.0.0.1"], ["perishable_token", "n007omCa9JIQBRNz0ZRI"], ["updated_at", "2016-01-16 17:21:10.211229"], ["id", 12]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 144ms (ActiveRecord: 0.5ms)
+Started GET "/" for 127.0.0.1 at 2016-01-16 18:21:10 +0100
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 12]]
+  Rendered home/index.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_user_dropdown.html.erb (0.5ms)
+  Rendered layouts/_top_navigation_bar.html.erb (1.0ms)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m

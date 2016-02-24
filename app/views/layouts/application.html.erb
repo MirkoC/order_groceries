@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pbs</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'layouts/top_navigation_bar' %>
+<div class="row">
+  <div class="col-sm-4 text-center center-block">
+    <% flash.each do |type, message| %>
+        <div class="alert <%= bootstrap_class_for(type) %>" id="flash">
+          <%= message %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <%= yield %>
+</div>
+</body>
+</html>
