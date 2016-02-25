@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :full_name)
   end
 
+  def is_authorized?(base_role)
+    render file: 'public/401' unless current_user.role? base_role
+  end
+
   private
 
   def load_user_using_perishable_token
