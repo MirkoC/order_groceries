@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
   end
   attr_accessor :current_password
 
+
   ROLES = %i[prvi_koraci koraci moderator admin superadmin ]
+
+  validates :role, inclusion: {in: ROLES.map {|role| role.to_s}}
 
   def self.find_by_username_or_email(login)
     User.find_by_username(login) || User.find_by_email(login)
