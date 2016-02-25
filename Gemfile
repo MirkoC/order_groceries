@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-# authorization
-gem 'cancancan', '~> 1.10'
 # testing
 group :development, :test do
   # Browser Testing
