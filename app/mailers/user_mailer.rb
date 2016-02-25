@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
   def verification_instructions(user)
     @user = user
     @verification_url = verify_url(@user.perishable_token)
-    mail( :to => @user.email,
+    mail( :to => 'dv.koraci@gmail.com',
           :subject => 'Email Verification',
           :content_type => 'text/html')
   end

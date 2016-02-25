@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = 'You have successfully created account. Welcome and verification emails will be sent to you shortly!'
+      flash[:notice] = 'Uspješno ste se registrirali! Email dobrodošlice Vam uskoro stiže. Nakon što administrator potvrdi Vaš račun moći ćete koristiti aplikaciju.'
       @user.deliver_welcome_email!
       @user.deliver_verification_instructions!
       redirect_to root_path
