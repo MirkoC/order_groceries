@@ -1,4 +1,4 @@
-<% available_roles = User::ROLES.each_with_object({}) {|role, memo| memo["#{role}"] = role.to_s}%>
+<% available_roles = User::ROLES[0..(User::ROLES.index(user.role_sym))].each_with_object({}) {|role, memo| memo["#{role}"] = role.to_s}%>
 
 <tr>
   <td><%= best_in_place user, :username, as: :input, class: 'hvr-underline-from-center'%></td>
