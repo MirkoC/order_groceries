@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
   end
   attr_accessor :current_password
 
+
+  ROLES = %i[prvi_koraci koraci moderator admin superadmin ]
+
+  validates :role, inclusion: {in: ROLES.map {|role| role.to_s}}
+
   def self.find_by_username_or_email(login)
     User.find_by_username(login) || User.find_by_email(login)
   end
@@ -27,5 +32,21 @@ class User < ActiveRecord::Base
   def verify!
     self.verified = true
     self.save
+  end
+
+  def base_role?
+    ROLES[0..1].include? role_sym
+  end
+
+  def higher_role?
+    ROLES[2..4].include? role_sym
+  end
+
+  def role?(base_role)
+    User::ROLES.index(base_role) <= User::ROLES.index(role_sym)
+  end
+
+  def role_sym
+    role.to_sym
   end
 end

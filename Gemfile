@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # testing
 group :development, :test do
   # Browser Testing

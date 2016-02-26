@@ -1,0 +1,13 @@
+<% available_roles = User::ROLES[0..(User::ROLES.index(current_user.role_sym))].each_with_object({}) {|role, memo| memo["#{role}"] = role.to_s}%>
+
+<tr>
+  <td><%= best_in_place user, :username, as: :input, class: 'hvr-underline-from-center'%></td>
+
+  <td><%= best_in_place user, :email, as: :input, class: 'hvr-underline-from-center'%></td>
+
+  <td><%= best_in_place_if user.full_name, user, :full_name, as: :input, class: 'hvr-underline-from-center'%></td>
+
+  <td><%= best_in_place user, :role, as: :select, collection: available_roles, class: 'hvr-underline-from-center' %></td>
+
+  <td><%= best_in_place user, :verified, as: :checkbox, collection: {false: 'No', true: 'Yes'}, class: 'hvr-underline-from-center', style: 'cursor: pointer;'%></td>
+</tr>

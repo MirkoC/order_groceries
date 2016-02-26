@@ -8,6 +8,11 @@
     <li>
       <%=link_to ' My data ', user_path(current_user), class: 'fa fa-paperclip' %>
     </li>
+    <% if current_user.role? :admin %>
+        <li>
+          <%=link_to ' Admin panel ', admins_path, class: 'fa fa-exclamation-triangle' %>
+        </li>
+    <% end %>
     <li role="separator" class="divider"></li>
     <li>
       <%=link_to ' Log out ', user_session_path(current_user_session), 'data-method' => :delete, class: 'fa fa-sign-out' %>

@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :full_name)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :full_name, :role, :verified)
+  end
+
+  def is_authorized?(base_role)
+    render file: 'public/401' unless current_user.role? base_role
   end
 
   private

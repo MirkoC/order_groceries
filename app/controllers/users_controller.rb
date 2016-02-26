@@ -24,7 +24,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id]) || current_user
+    p params
     respond_to do |format|
       if @user.update_attributes(user_params)
         format.json { respond_with_bip(@user) }

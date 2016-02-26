@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :show, :update, :edit]
   get 'register' => 'users#new'
   put 'change_password' => 'users#change_password'
-  get 'welcome' => 'home#registration_successful'
   get 'verify' => 'user_verifications#update'
 
   # user_sessions controller
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new'
 
   resources :password_resets, only: [ :new, :create, :edit, :update ]
+  resources :admins
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
