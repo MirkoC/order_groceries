@@ -1,8 +1,13 @@
 $( document ).ready(function() {
+  var icon = $('.users-collapse');
+  var collapse_element = $('.users-panel-body');
+  Collapse(icon, collapse_element);
+});
 
-  $('.users-collapse').on('click', function(ev){
+function Collapse(icon, collapse_element) {
+  icon.on('click', function(ev){
     var $icon = $(this);
-    var $collapse_target = $('.users-panel-body');
+    var $collapse_target = collapse_element;
     if ($collapse_target.is(':visible')) {
       $collapse_target.hide('');
       $icon.removeClass('fa-minus-square-o').addClass('fa-expand');
@@ -11,5 +16,4 @@ $( document ).ready(function() {
       $collapse_target.show('');
     }
   });
-
-});
+};
