@@ -15,3 +15,11 @@
     margin:0 auto;
     text-align:left;
 }
+
+.hand-cursor {
+    cursor: pointer;
+}
+
+.aquamarine-color {
+    color: aquamarine;
+}

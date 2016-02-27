@@ -1,0 +1,48 @@
+<div class="col-lg-4">
+  <div class="panel panel-warning order-widget">
+    <div class="panel-heading">
+      <row>
+        <i class="fa fa-home"> Mate Lovraka 20 </i>
+        <%= link_to '', edit_order_path(1), class: 'fa fa-edit fa-2x pull-right aquamarine-color hvr-pulse-grow' %>
+        <i class="fa fa-minus-square-o fa-2x pull-right order-collapse hand-cursor hvr-pulse-shrink", id="<%=element%>-order-collapse"></i>
+      </row>
+      <row>
+        <i class="fa fa-calendar"> <%= DateTime.now.strftime('%d.%m.%y. - %H:%M') %> </i>
+      </row>
+    </div>
+    <div class="panel-body order-panel-body", id="<%=element%>-order-panel-body">
+      <table class="table table-hover">
+        <tr>
+          <th>Namirnica</th>
+          <th>Količina</th>
+          <th>Proizvođač</th>
+        </tr>
+        <tr>
+          <td>Mlijeko</td>
+          <td>6 l</td>
+          <td>Dukat</td>
+        </tr>
+        <tr>
+          <td>Kruh</td>
+          <td>2 kom</td>
+          <td>Mlinar</td>
+        </tr>
+        <tr>
+          <td>Jabuke</td>
+          <td>3 kg</td>
+          <td>-</td>
+        </tr>
+
+      </table>
+    </div>
+    <div class="panel-footer">
+      <row class="display-block">
+        <i>Author: Ivan Cerovac</i>
+        <i class="fa fa-times pull-right"></i>
+      </row>
+      <row>
+        <i>Uredio: Luka Cerovac</i>
+      </row>
+    </div>
+  </div>
+</div>

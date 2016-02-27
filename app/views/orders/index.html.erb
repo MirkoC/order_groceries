@@ -1,0 +1,11 @@
+<div class="col-sm-10 center-block">
+  <h4 class="text-center">Narudžbe</h4>
+  <hr/>
+  <h5 class="text-center">
+    AKTIVNE
+  </h5>
+  <hr/>
+  <% 12.times do |el|%>
+      <%= render 'order_widget', element: el%>
+  <% end %>
+</div>
