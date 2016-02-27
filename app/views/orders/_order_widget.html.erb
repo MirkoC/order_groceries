@@ -3,8 +3,8 @@
     <div class="panel-heading">
       <row>
         <i class="fa fa-home"> Mate Lovraka 20 </i>
-        <i class="fa fa-edit fa-2x pull-right hand-cursor"></i>
-        <i class="fa fa-minus-square-o fa-2x pull-right order-collapse hand-cursor", id="<%=element%>-order-collapse"></i>
+        <%= link_to '', edit_order_path(1), class: 'fa fa-edit fa-2x pull-right aquamarine-color hvr-pulse-grow' %>
+        <i class="fa fa-minus-square-o fa-2x pull-right order-collapse hand-cursor hvr-pulse-shrink", id="<%=element%>-order-collapse"></i>
       </row>
       <row>
         <i class="fa fa-calendar"> <%= DateTime.now.strftime('%d.%m.%y. - %H:%M') %> </i>

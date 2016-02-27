@@ -10,9 +10,9 @@
         var $collapse_target = collapse_element;
         if ($collapse_target.is(':visible')) {
           $collapse_target.hide('');
-          $icon.removeClass('fa-minus-square-o').addClass('fa-expand');
+          $icon.removeClass('fa-minus-square-o').removeClass('hvr-pulse-shrink').addClass('fa-expand').addClass('hvr-pulse-grow');
         } else {
-          $icon.removeClass('fa-expand').addClass('fa-minus-square-o');
+          $icon.removeClass('fa-expand').removeClass('hvr-pulse-grow').addClass('fa-minus-square-o').addClass('hvr-pulse-shrink');
           $collapse_target.show('');
         }
       });
