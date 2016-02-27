@@ -11,10 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225154809) do
+ActiveRecord::Schema.define(version: 20160227163756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buildings", force: :cascade do |t|
+    t.string   "name"
+    t.string   "role_name"
+    t.integer  "institution_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "buildings", ["institution_id"], name: "index_buildings_on_institution_id", using: :btree
+
+  create_table "institutions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "role_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.boolean  "archived",      default: false
+    t.integer  "building_id"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "orders", ["building_id"], name: "index_orders_on_building_id", using: :btree
+  add_index "orders", ["created_by_id"], name: "index_orders_on_created_by_id", using: :btree
+  add_index "orders", ["updated_by_id"], name: "index_orders_on_updated_by_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",                            null: false
@@ -35,4 +65,6 @@ ActiveRecord::Schema.define(version: 20160225154809) do
     t.string   "role"
   end
 
+  add_foreign_key "buildings", "institutions"
+  add_foreign_key "orders", "buildings"
 end
