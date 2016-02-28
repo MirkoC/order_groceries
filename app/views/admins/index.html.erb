@@ -20,22 +20,15 @@
       </table>
     </div>
   </div>
-  <div class="panel panel-warning">
+  <div class="panel panel-primary">
     <div class="panel-heading">
       Institutions
       <i class="fa fa-minus-square-o fa-2x pull-right institutions-collapse hand-cursor hvr-pulse-shrink"></i>
     </div>
     <div class="panel-body institutions-panel-body">
-      <table class="table table-hover", id="#institutions">
-        <tr>
-          <th>Name</th>
-          <th>Role</th>
-        </tr>
-
-        <% @institutions.each do |institution| %>
-            <%= render 'institutions/institution', institution: institution %>
-        <%end %>
-      </table>
+      <% @institutions.each do |institution| %>
+          <%= render 'institutions/institution', institution: institution %>
+      <%end %>
     </div>
   </div>
 </div>

@@ -1,5 +1,27 @@
-<tr>
-  <td><%= best_in_place institution, :name, as: :input, class: 'hvr-underline-from-center'%></td>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <%= best_in_place institution, :name, as: :input, class: 'hvr-underline-from-center'%>
+    <i class="fa fa-minus-square-o fa-2x pull-right buildings-collapse hand-cursor hvr-pulse-shrink"></i>
+  </div>
+  <div class="panel-body buildings-panel-body">
+    <b class="fa fa-list-ol" style="color: cadetblue;"> Buildings </b>
+    <table class="table table-hover", id="#buildings">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
 
-  <td><%= best_in_place institution, :role_name, as: :input, class: 'hvr-underline-from-center'%></td>
-</tr>
+      <% institution.buildings.each do |building| %>
+          <%= render 'buildings/building', building: building %>
+      <% end %>
+    </table>
+  </div>
+  <div class="panel-footer">
+    <i style="font-size: 14px;">
+      Role:
+      <%= best_in_place institution, :role_name, as: :input, class: 'hvr-underline-from-center'%>
+    </i>
+  </div>
+</div>

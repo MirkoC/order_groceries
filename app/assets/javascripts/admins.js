@@ -6,7 +6,11 @@
 
     var icon = $('.institutions-collapse');
     var collapse_element = $('.institutions-panel-body');
-    Collapse(icon, collapse_element)
+    Collapse(icon, collapse_element);
+
+    var icon = $('.buildings-collapse');
+    var collapse_element = $('.buildings-panel-body');
+    Collapse(icon, collapse_element);
     function Collapse(icon, collapse_element) {
       icon.on('click', function(ev){
         var $icon = $(this);
